@@ -9,6 +9,7 @@ package org.team484.henry;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -25,12 +26,14 @@ import org.team484.henry.commands.ExampleCommand;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
-
+    Relay LEDs = new Relay(5);
+    Relay Lights = new Relay(3);
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
+        
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
 
@@ -63,6 +66,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        LEDs.set(Relay.Value.kForward);
+        Lights.set(Relay.Value.kForward);
     }
     
     /**
