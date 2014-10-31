@@ -10,11 +10,9 @@ package org.team484.henry;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.team484.henry.commands.CommandBase;
-import org.team484.henry.commands.ExampleCommand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,7 +23,6 @@ import org.team484.henry.commands.ExampleCommand;
  */
 public class Robot extends IterativeRobot {
 
-    Command autonomousCommand;
     Relay LEDs = new Relay(5);
     Relay Lights = new Relay(3);
     /**
@@ -34,16 +31,12 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
         
-        // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
-
         // Initialize all subsystems
         CommandBase.init();
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        autonomousCommand.start();
     }
 
     /**
@@ -58,7 +51,6 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
     }
 
     /**

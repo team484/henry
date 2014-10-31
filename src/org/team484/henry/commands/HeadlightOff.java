@@ -1,15 +1,20 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.team484.henry.commands;
 
 /**
  *
- * @author bradmiller
+ * @author kevin
  */
-public class ExampleCommand extends CommandBase {
-
-    public ExampleCommand() {
+public class HeadlightOff extends CommandBase {
+    
+    public HeadlightOff() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(headlight);
     }
 
     // Called just before this Command runs the first time
@@ -18,6 +23,7 @@ public class ExampleCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        headlight.headlightOff();
     }
 
     // Make this return true when this Command no longer needs to run execute()

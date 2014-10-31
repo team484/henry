@@ -22,17 +22,24 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
     RobotDrive driveTrain = new RobotDrive(RobotMap.leftWheel,RobotMap.rightWheel);
     Joystick joystick = new Joystick(RobotMap.joystick);
+    AnalogChannel ultrasonic = new AnalogChannel(1, 2);
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
         setDefaultCommand(new DriveRobot());
     }
     public void driveRobot() {
-        if (CommandBase.ultrasonic.getVoltage() > RobotMap.ultrasonicVoltage) {
-            driveTrain.arcadeDrive(-joystick.getY(), -joystick.getX());
+        if (ultrasonic.getVoltage() * 3 - 1 >= -joystick.getY()) {
+            driveTrain.arcadeDrive(joystick.getY(), joystick.getX());
         } else {
-            driveTrain.arcadeDrive(0.3,0);
+            driveTrain.arcadeDrive(-(ultrasonic.getVoltage() * 3 - 1),joystick.getX());
         }
-        
+    }
+    public void creepRobot() {
+        if (ultrasonic.getVoltage() * 3 - 1 >= -joystick.getY()/2) {
+            driveTrain.arcadeDrive(joystick.getY()/2, joystick.getX()/2);
+        } else {
+            driveTrain.arcadeDrive(-(ultrasonic.getVoltage() * 3 - 1),joystick.getX()/2);
+        }
     }
 }

@@ -17,12 +17,18 @@ public class RobotMap {
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
     public static final int joystick = 1; //Joystick port
-    public static final int hornButton = 3; //Button
+    public static final int buttonBox = 2; //Joystick port
+    
+    public static final int lEDsButton = 3; //Button (buttonBox)
+    public static final int headlightButton = 4; //Button (buttonBox)
+    public static final int hornButton = 3; //Button (buttonBox)
+    public static final int creepButton = 6; //Button (joystick)
+    
     public static final int leftWheel = 4; //PWM
     public static final int rightWheel = 3; //PWM
     public static final int horn = 7; //Relay
     public static final int LEDs = 5; //Relay
     public static final int Lights = 3; //Relay
     public static final int ultrasonic = 1; //Analog Input
-    public static final double ultrasonicVoltage = 0.0; //Voltage for close object
+    public static final double ultrasonicVoltage = -100.0; //Voltage for close object
 }

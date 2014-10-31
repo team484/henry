@@ -3,10 +3,15 @@ package org.team484.henry;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.team484.henry.commands.DriveRobot;
+import org.team484.henry.commands.HeadlightOff;
+import org.team484.henry.commands.HeadlightOn;
 import org.team484.henry.commands.HornOff;
 import org.team484.henry.commands.HornOn;
+import org.team484.henry.commands.LEDsOff;
+import org.team484.henry.commands.LEDsOn;
+import org.team484.henry.commands.creepRobot;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -14,7 +19,11 @@ import org.team484.henry.commands.HornOn;
  */
 public class OI {
     Joystick joystick = new Joystick(RobotMap.joystick);
-    Button useHorn = new JoystickButton(joystick, RobotMap.hornButton);
+    Joystick buttonBox = new Joystick(RobotMap.buttonBox);
+    Button useHorn = new JoystickButton(buttonBox, RobotMap.hornButton);
+    Button creep = new JoystickButton(joystick, RobotMap.creepButton);
+    Button LEDs = new JoystickButton(buttonBox, RobotMap.lEDsButton);
+    Button headLights = new JoystickButton(buttonBox, RobotMap.headlightButton);
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
@@ -49,6 +58,17 @@ public class OI {
     public OI() {
         useHorn.whileHeld(new HornOn());
         useHorn.whenReleased(new HornOff());
+        LEDs.whenPressed(new LEDsOn());
+        LEDs.whileHeld(new LEDsOn());
+        LEDs.whenReleased(new LEDsOff());
+        
+        headLights.whenPressed(new HeadlightOn());
+        headLights.whileHeld(new HeadlightOn());
+        headLights.whenReleased(new HeadlightOff());
+        
+        creep.whenPressed(new creepRobot());
+        creep.whileHeld(new creepRobot());
+        creep.whenReleased(new DriveRobot());
     }    
 }
 
