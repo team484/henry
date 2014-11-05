@@ -9,6 +9,7 @@ package org.team484.henry;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -23,8 +24,9 @@ import org.team484.henry.commands.CommandBase;
  */
 public class Robot extends IterativeRobot {
 
-    Relay LEDs = new Relay(5);
-    Relay Lights = new Relay(3);
+    //Relay LEDs = new Relay(5);
+    //Relay Lights = new Relay(3);
+    Joystick stick2 = new Joystick(2);
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -58,8 +60,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        LEDs.set(Relay.Value.kForward);
-        Lights.set(Relay.Value.kForward);
+        //LEDs.set(Relay.Value.kForward);
+        //Lights.set(Relay.Value.kForward);
     }
     
     /**

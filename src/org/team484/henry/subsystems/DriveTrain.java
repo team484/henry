@@ -32,14 +32,24 @@ public class DriveTrain extends Subsystem {
         if (ultrasonic.getVoltage() * 3 - 1 >= -joystick.getY()) {
             driveTrain.arcadeDrive(joystick.getY(), joystick.getX());
         } else {
-            driveTrain.arcadeDrive(-(ultrasonic.getVoltage() * 3 - 1),joystick.getX());
+            if (ultrasonic.getVoltage() > 0.01) {
+                driveTrain.arcadeDrive(-(ultrasonic.getVoltage() * 3 - 1),joystick.getX());
+            } else {
+                driveTrain.arcadeDrive(joystick.getY()/10, joystick.getX()/10);
+                System.out.println("Ultrasonic Error");
+            }
         }
     }
     public void creepRobot() {
         if (ultrasonic.getVoltage() * 3 - 1 >= -joystick.getY()/2) {
             driveTrain.arcadeDrive(joystick.getY()/2, joystick.getX()/2);
         } else {
-            driveTrain.arcadeDrive(-(ultrasonic.getVoltage() * 3 - 1),joystick.getX()/2);
+            if (ultrasonic.getVoltage() > 0.01) {
+                driveTrain.arcadeDrive(-(ultrasonic.getVoltage() * 3 - 1),joystick.getX());
+            } else {
+                driveTrain.arcadeDrive(joystick.getY()/10, joystick.getX()/10);
+                System.out.println("Ultrasonic Error");
+            }        
         }
     }
 }
